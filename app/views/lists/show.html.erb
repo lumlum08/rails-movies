@@ -9,21 +9,38 @@
           <% @list.movies.each do |movie|  %>
           <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
           <div class="card-film">
-            <%= image_tag movie.poster_url  %>
+              <%= image_tag movie.poster_url  %>
               <div class="card-film-infos">
                 <div>
                   <h2><%= movie.title %> - <%= movie.rating %>% </h2>
                   <p> <small><%= movie.overview  %></small></p>
-                <div class="d-flex align-items-end justify-content-between pt-1">
-                  <small class="flex-grow-1" style="font-size: 5px"> "<%= bookmark.comment %>"</small>
-                  <small class="text-right flex-shrink-0"><%= link_to "delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure you want to remove #{movie.title} from your #{@list.name} list"}, class: 'text-danger' %></small>
-                </div>
+                  <div class="d-flex align-items-end justify-content-between pt-1">
+                    <small class="flex-grow-1" style="font-size: 5px"> "<%= bookmark.comment %>"</small>
+                    <small class="text-right flex-shrink-0"><%= link_to "delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure you want to remove #{movie.title} from your #{@list.name} list"}, class: 'text-danger' %></small>
+                  </div>
                 </div>
               </div>
           </div>
           <% end %>
+        </div>
     </div>
+        <div class="card-reviews">
+          <div class="card-reviews-content">
+            <h1>Reviews</h1>
+            <% @list.reviews.each do |review| %>
+            <p><%= review.rating %> stars</p>
+            <p><%= review.comment %> </p>
+            <% end %>
+          </div>
+          <div class="card-reviews-form">
+            <h3>Add your review</h3>
+            <%= simple_form_for [@list, @review] do |f| %>
+            <%= f.input :comment, label: "Your comment..." %>
+            <%= f.input :rating, collection: (0..5) %>
+            <%= f.submit class:"btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
   </div>
-</div>
 
 <%= render "bookmarks/new", list: @list %>

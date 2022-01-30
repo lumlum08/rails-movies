@@ -11,6 +11,7 @@ require 'json'
 require 'faker'
 
 puts "Cleaning up database..."
+Bookmark.destroy_all
 Movie.destroy_all
 List.destroy_all
 puts "Database cleaned"

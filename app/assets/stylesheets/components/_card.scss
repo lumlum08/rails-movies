@@ -47,3 +47,19 @@
       margin: 0;
     }
 }
+
+// card reviews dans la show
+.card-reviews {
+  display: flex;
+  justify-content: space-evenly;
+  border-top: 3px solid lightgrey;
+  margin: 10px 0;
+  padding: 10px 0px;
+  border-bottom: 3px solid lightgrey;
+}
+
+.card-reviews-form {
+  background-color: white;
+  border-left: 2px solid lightgrey;
+  padding-left: 10px;
+}

@@ -1,1 +1,29 @@
-<h1><%= @list.name %></h1>
+<div class="banner" style=" background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/hbz-classic-movies-00-index-new-1591823486.jpg?crop=1.00xw:1.00xh;0,0&resize=850:*">
+  <h1><%= @list.name %></h1>
+  <span class="movies-count"><%= pluralize(@list.movies.size, 'movie') %></span>
+</div>
+
+  <div class="film-container">
+    <div class="d-flex justify-content-around">
+        <div class="row" style="margin: 15px">
+          <% @list.movies.each do |movie|  %>
+          <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+          <div class="card-film">
+            <%= image_tag movie.poster_url  %>
+              <div class="card-film-infos">
+                <div>
+                  <h2><%= movie.title %> - <%= movie.rating %>% </h2>
+                  <p> <small><%= movie.overview  %></small></p>
+                <div class="d-flex align-items-end justify-content-between pt-1">
+                  <small class="flex-grow-1" style="font-size: 5px"> "<%= bookmark.comment %>"</small>
+                  <small class="text-right flex-shrink-0"><%= link_to "delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure you want to remove #{movie.title} from your #{@list.name} list"}, class: 'text-danger' %></small>
+                </div>
+                </div>
+              </div>
+          </div>
+          <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render "bookmarks/new", list: @list %>

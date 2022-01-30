@@ -8,6 +8,7 @@
 
 require 'open-uri'
 require 'json'
+require 'faker'
 
 puts "Cleaning up database..."
 Movie.destroy_all
@@ -15,7 +16,7 @@ List.destroy_all
 puts "Database cleaned"
 
 url = "http://tmdb.lewagon.com/movie/top_rated"
-10.times do |i|
+5.times do |i|
   puts "Importing movies from page #{i + 1}"
   movies = JSON.parse(open("#{url}?page=#{i + 1}").read)['results']
   movies.each do |movie|
@@ -36,3 +37,14 @@ genres.each do |genre|
   list = List.create!(name: genre.upcase!)
   puts "Creating #{list['name']}..."
 end
+
+puts "Creating bookmarks..."
+50.times do
+  bookmark = Bookmark.create!(
+    comment: "#{Faker::Movie.quote}",
+    movie_id: rand(Movie.first.id..Movie.last.id),
+    list_id: rand(List.first.id..List.last.id)
+  )
+  puts "Creating bookmark #{bookmark['comment']}..."
+end
+puts "Finished seeding!"

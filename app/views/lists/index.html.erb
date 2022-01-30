@@ -1,8 +1,24 @@
-<h1>List des Films</h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/hbz-classic-movies-00-index-new-1591823486.jpg?crop=1.00xw:1.00xh;0,0&resize=980:*);">
+  <div class="container">
+    <h1>Save any kind of <strong>Movies</strong></h1>
+    <p>Classic</p>
+  </div>
+</div>
 
-<% @lists.each do |list| %>
-<p><%= link_to list.name, list_path(list) %></p>
-<% end %>
 
+<div class="list-container">
+  <div class="title-link">
+    <h1>Mes Lists</h1>
+    <%= link_to 'Créer sa liste', new_list_path(@list), class:"btn btn-warning" %>
+  </div>
 
-<%= link_to 'Créer sa liste', new_list_path(@list) %>
+  <div class="d-flex justify-content-between">
+    <div class="row my-1" style="margin: 18px">
+      <% @lists.each do |list| %>
+      <div class="card-list" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+      <p><%= link_to list.name, list_path(list) %></p>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

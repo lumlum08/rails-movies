@@ -1,0 +1,49 @@
+// Card des listes en home page
+.card-list {
+  display: flex;
+  justify-content: space-around;
+  background-position: center;
+  align-items: center;
+  height: 150px;
+  width: 180px;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 20px 20px;
+    a {
+      color: white;
+      opacity: 0.8;
+      text-decoration: none;
+    }
+}
+
+// card film dans la show
+.card-film {
+  width: 205px;
+  overflow: hidden;
+  background: white;
+  padding: 0px;
+  margin: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    img {
+      width: 205px;
+      height: 100px;
+      object-fit: cover;
+    }
+}
+
+.card-film-infos {
+  display: flex;
+  justify-content: space-between;
+    h2 {
+      font-size: 15px;
+    }
+    p {
+      font-size: 10px;
+      text-align: justify;
+      margin: 0;
+    }
+}

@@ -1,0 +1,5 @@
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.input :comment, label: "Your comment" %>
+  <%= f.association :movie, collection: Movie.all.order(:title), input_html: {multiple: true, data: {controller: 'select2', select2_options_value: {tags: true}}} %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>

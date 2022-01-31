@@ -3,13 +3,11 @@
 
   <div class="d-flex justify-content-end">
     <%= link_to 'New list', new_list_path, class:"navbar-brand" %>
-    <%= link_to 'Ma list', "#", class:"navbar-brand" %>
 
-    <%= simple_form_for :search, url: root_path, method: :get do |f| %>
-    <div class="search-form-control form-group form-inline" style="display: flex">
-      <input class="form-control string required" type="text" name="search[query]" id="search_query" />
-      <button name="button" type="submit" class="btn btn-flat">
-        <i class="fas fa-search">Search</i>
+    <%= simple_form_for :search, url: lists_path, method: :get do |f| %>
+    <%= f.input :title, collection:Movie::TITLE, as: :select,:include_blank => "Select film title", label: false%>
+      <button name="button" type="submit" class="btn btn-danger">
+        <i class="fas fa-search"></i>
       </button>
     </div>
     <% end %>
